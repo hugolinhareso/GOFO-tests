@@ -1,8 +1,8 @@
-package System;
+package main.java.com.mohamed_hamdy.System;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import UI.SystemUI;
+import main.java.com.mohamed_hamdy.UI.SystemUI;
 
 /**
  * Administrator class used to allow admin to mange system
@@ -15,9 +15,9 @@ public class Administrator {
     String email, password;
     int choice;
     String choice2;
-    static ArrayList<Playground> Approved;//���Approved playgrounds
-    static ArrayList<Playground> Requested;//Requested playground to approve them
-    ArrayList<Playground> suspended;//suspended playgrounds
+    static ArrayList<Playground> Approved;// ���Approved playgrounds
+    static ArrayList<Playground> Requested;// Requested playground to approve them
+    ArrayList<Playground> suspended;// suspended playgrounds
     ArrayList<String> complaints;
     SystemUI obj = new SystemUI();
 
@@ -41,27 +41,32 @@ public class Administrator {
             System.out.println(Approved.get(i).getName());
         }
     }
+
     /**
-     * get emails that send from another accounts 
+     * get emails that send from another accounts
+     * 
      * @return email
      */
     public String getEmail() {
         return email;
     }
+
     /**
-     * get password 
+     * get password
+     * 
      * @return password
      */
     public String getPassword() {
         return password;
     }
-    
+
     /**
      * Approving the requested playgrounds from the arraylist of requested
      */
     public void approvePlayground() {
         for (int i = 0; i < Requested.size(); i++) {
-            System.out.println("Owner: " + Requested.get(i).getOwner() + " Playground Name is: " + Requested.get(i).getName());
+            System.out.println(
+                    "Owner: " + Requested.get(i).getOwner() + " Playground Name is: " + Requested.get(i).getName());
             System.out.println("Do you want to Approve this playground? (yes or no)");
             String getAns = input.nextLine();
             if (getAns.equalsIgnoreCase("yes")) {
@@ -71,99 +76,113 @@ public class Administrator {
             }
         }
     }
+
     /**
      * display All Playgrounds informations
      */
-    public void displayAllPlaygrounds(){
+    public void displayAllPlaygrounds() {
         for (int i = 0; i < Approved.size(); i++) {
-            System.out.println("PlayGround Number :" + (i+1));
+            System.out.println("PlayGround Number :" + (i + 1));
             System.out.println("PlayGround Status :" + Approved.get(i).getStatus());
             System.out.println("PlayGround Name :" + Approved.get(i).getName());
             System.out.println("PlayGround Price:" + Approved.get(i).getPrice());
-            System.out.println("Playground Slots Are: From " + Approved.get(i).getSlotsBegin() + " To: " + Approved.get(i).getSlotsEnd());
-            System.out.println("Allowed cancellation time till " + Approved.get(i).getCancellationPeriod() + " Before the booked time");
-            System.out.println("\n");    
+            System.out.println("Playground Slots Are: From " + Approved.get(i).getSlotsBegin() + " To: "
+                    + Approved.get(i).getSlotsEnd());
+            System.out.println("Allowed cancellation time till " + Approved.get(i).getCancellationPeriod()
+                    + " Before the booked time");
+            System.out.println("\n");
         }
     }
+
     /**
      * search for playground By Name
+     * 
      * @param Name Playground Name
      */
-    public void searchByName(String Name){
+    public void searchByName(String Name) {
         System.out.println("Dispaly All PlayGrounds Names.\n");
         for (int i = 0; i < Approved.size(); i++) {
-            System.out.println("Playground Number "+(i+1) + " Name : " + Approved.get(i).getName() + " ");
+            System.out.println("Playground Number " + (i + 1) + " Name : " + Approved.get(i).getName() + " ");
         }
         boolean x = false;
         for (int i = 0; i < Approved.size(); i++) {
-            if(Approved.get(i).getName().equals(Name)){
-                System.out.println("PlayGround Number :" + (i+1));
+            if (Approved.get(i).getName().equals(Name)) {
+                System.out.println("PlayGround Number :" + (i + 1));
                 System.out.println("PlayGround Status :" + Approved.get(i).getStatus());
                 System.out.println("PlayGround Name :" + Approved.get(i).getName());
                 System.out.println("PlayGround Price:" + Approved.get(i).getPrice());
-                System.out.println("Playground Slots Are: From " + Approved.get(i).getSlotsBegin() + " To: " + Approved.get(i).getSlotsEnd());
-                System.out.println("Allowed cancellation time till " + Approved.get(i).getCancellationPeriod() + " Before the booked time");
-                System.out.println("\n");    
+                System.out.println("Playground Slots Are: From " + Approved.get(i).getSlotsBegin() + " To: "
+                        + Approved.get(i).getSlotsEnd());
+                System.out.println("Allowed cancellation time till " + Approved.get(i).getCancellationPeriod()
+                        + " Before the booked time");
+                System.out.println("\n");
                 x = true;
             }
         }
-        if(x == false){
+        if (x == false) {
             System.out.println("No Playground Have the same Name Please Try agian.\n");
         }
     }
-    
+
     /**
      * search for playground By Location
+     * 
      * @param Location Playground Location
      */
-    public void searchByLocation(String Location){
+    public void searchByLocation(String Location) {
         System.out.println("Dispaly All PlayGrounds Location.\n");
         for (int i = 0; i < Approved.size(); i++) {
-            System.out.println("Playground Number "+( i+1) + " Location : " + Approved.get(i).getLocation()+ " ");
+            System.out.println("Playground Number " + (i + 1) + " Location : " + Approved.get(i).getLocation() + " ");
         }
         boolean x = false;
         for (int i = 0; i < Approved.size(); i++) {
-            if(Approved.get(i).getLocation().equals(Location)){
-                System.out.println("PlayGround Number :" + (i+1));
+            if (Approved.get(i).getLocation().equals(Location)) {
+                System.out.println("PlayGround Number :" + (i + 1));
                 System.out.println("PlayGround Status :" + Approved.get(i).getStatus());
                 System.out.println("PlayGround Name :" + Approved.get(i).getName());
                 System.out.println("PlayGround Price:" + Approved.get(i).getPrice());
-                System.out.println("Playground Slots Are: From " + Approved.get(i).getSlotsBegin() + " To: " + Approved.get(i).getSlotsEnd());
-                System.out.println("Allowed cancellation time till " + Approved.get(i).getCancellationPeriod() + " Before the booked time");
-                System.out.println("\n");    
+                System.out.println("Playground Slots Are: From " + Approved.get(i).getSlotsBegin() + " To: "
+                        + Approved.get(i).getSlotsEnd());
+                System.out.println("Allowed cancellation time till " + Approved.get(i).getCancellationPeriod()
+                        + " Before the booked time");
+                System.out.println("\n");
                 x = true;
             }
         }
-        if(x == false){
+        if (x == false) {
             System.out.println("No Playground Have the same Location Please Try agian.\n");
         }
     }
+
     /**
-     * display All Playgrounds Locations it used in when player want to book Playground 
+     * display All Playgrounds Locations it used in when player want to book
+     * Playground
      */
-    public void displayAllavailablePlaygroundsLocations(){
+    public void displayAllavailablePlaygroundsLocations() {
         System.out.println("Dispaly All PlayGrounds Location.");
         for (int i = 0; i < Approved.size(); i++) {
-            if(Approved.get(i).statusPlayground.equalsIgnoreCase("available"))
-                System.out.println("Playground Number:"+( i+1) + "Location :" + Approved.get(i).getLocation());
+            if (Approved.get(i).statusPlayground.equalsIgnoreCase("available"))
+                System.out.println("Playground Number:" + (i + 1) + "Location :" + Approved.get(i).getLocation());
         }
     }
+
     /**
-     * display All Playgrounds Names it used in when player want to book Playground 
+     * display All Playgrounds Names it used in when player want to book Playground
      */
-    
-    public void displayAllavailablePlaygroundsNames(){
+
+    public void displayAllavailablePlaygroundsNames() {
         System.out.println("Dispaly All PlayGrounds Names.");
-        for (int i = 0; i < Approved.size(); i++){
-            if(Approved.get(i).statusPlayground.equalsIgnoreCase("available"))
-                System.out.println("Playground Number:"+( i+1) + "Name :" + Approved.get(i).getName()+ " ");
+        for (int i = 0; i < Approved.size(); i++) {
+            if (Approved.get(i).statusPlayground.equalsIgnoreCase("available"))
+                System.out.println("Playground Number:" + (i + 1) + "Name :" + Approved.get(i).getName() + " ");
         }
     }
-    
+
     /**
      * booking slot for a player by finding it's location
-     * @param loc String loc
-     * @param player String player
+     * 
+     * @param loc     String loc
+     * @param player  String player
      * @param balance int balance
      * @return arraylist
      */
@@ -180,8 +199,10 @@ public class Administrator {
                     System.out.println("                     " + (i + 1));
                     System.out.println(Approved.get(i).getName());
                     System.out.println(Approved.get(i).getPrice());
-                    System.out.println("Slots Are: From " + Approved.get(i).getSlotsBegin() + " To: " + Approved.get(i).getSlotsEnd());
-                    System.out.println("Allowed cancellation time till " + Approved.get(i).getCancellationPeriod() + " Before the booked time");
+                    System.out.println("Slots Are: From " + Approved.get(i).getSlotsBegin() + " To: "
+                            + Approved.get(i).getSlotsEnd());
+                    System.out.println("Allowed cancellation time till " + Approved.get(i).getCancellationPeriod()
+                            + " Before the booked time");
                 }
             }
             if (bool) {
@@ -200,14 +221,15 @@ public class Administrator {
         int getAns = SystemUI.stringToInt(temp);
         System.out.println("Enter the day you want to book");
         String getDay = input.nextLine();
-        //getDay = Application.isString(getDay);
+        // getDay = Application.isString(getDay);
         if (balance > (Approved.get(getInput - 1).getPrice() * getAns)) {
             if (getInput + getAns > Approved.get(playgroundSlot).getSlotsEnd()) {
                 System.out.println("you cant book at this time as it exceeds the booking available time");
                 return 0;
             }
             hoursBooked = getAns;
-            for (int i = Approved.get(getInput - 1).getSlotsBegin(); i < (Approved.get(getInput - 1).getSlotsBegin() + 1); i++) {
+            for (int i = Approved.get(getInput - 1).getSlotsBegin(); i < (Approved.get(getInput - 1).getSlotsBegin()
+                    + 1); i++) {
                 Approved.get(getInput - 1).bookingTheSlot(player, Integer.toString(i), getDay);
             }
             return Approved.get(getInput - 1).getPrice() * hoursBooked;
@@ -217,12 +239,14 @@ public class Administrator {
         }
 
     }
-    
+
     /**
-     * booking a slot for a player in a playground booking slots by the playground's name
+     * booking a slot for a player in a playground booking slots by the playground's
+     * name
+     * 
      * @param playground String playground
-     * @param player String player name
-     * @param balance int balance
+     * @param player     String player name
+     * @param balance    int balance
      * @return arraylist
      */
     public int bookByName(String playground, String player, int balance) {
@@ -258,7 +282,7 @@ public class Administrator {
         getAns = SystemUI.stringToInt(temp);
         System.out.println("Enter the day you want to book in");
         String getDay = input.nextLine();
-        //getDay = Application.isString(getDay);
+        // getDay = Application.isString(getDay);
 
         if (balance > (Approved.get(playgroundSlot).getPrice() * getAns)) {
             hoursBooked = getAns;
@@ -277,16 +301,20 @@ public class Administrator {
             return 0;
         }
     }
+
     /**
      * addComplaints that he receive it in Complaints arraylist
+     * 
      * @param complain String complain msg
      */
     public void addComplaints(String complain) {
         complaints.add(complain);
     }
-    
+
     /**
-     * Suspending a playground for an action made by them, it's decided by the administrator
+     * Suspending a playground for an action made by them, it's decided by the
+     * administrator
+     * 
      * @param playground String playground name
      */
     public void suspendPlayground(String playground) {
@@ -306,9 +334,10 @@ public class Administrator {
         }
 
     }
-    
+
     /**
      * deleting a playground
+     * 
      * @param playground String playground name
      */
     public void deletePlayground(String playground) {
@@ -327,15 +356,18 @@ public class Administrator {
             deletePlayground(playground);
         }
     }
+
     /**
-     * Show all playgroundRequests and allow to add it or not 
+     * Show all playgroundRequests and allow to add it or not
+     * 
      * @param x playground object
      */
     public void playgroundRequests(Playground x) {
         Requested.add(x);
     }
+
     /**
-     * show Complaints list from users 
+     * show Complaints list from users
      */
     public void showComplaints() {
         System.out.println("The complaints list is: ");
@@ -344,9 +376,10 @@ public class Administrator {
             System.out.println(i + 1 + complaints.get(i));
         }
     }
-    
+
     /**
-     * removing the suspended playground from suspended list and moving it to approved list.
+     * removing the suspended playground from suspended list and moving it to
+     * approved list.
      */
     public void unSuspendPlayground() {
         for (int i = 0; i < suspended.size(); i++) {

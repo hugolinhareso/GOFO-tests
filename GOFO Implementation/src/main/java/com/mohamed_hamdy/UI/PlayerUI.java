@@ -1,15 +1,15 @@
-package UI;
+package main.java.com.mohamed_hamdy.UI;
 
-import static UI.SystemUI.accountMenu;
-import static UI.SystemUI.complaintForm;
-import static UI.SystemUI.isDigit;
-import static UI.SystemUI.isEmail;
-import static UI.SystemUI.isString;
-import static UI.SystemUI.stringToInt;
-import System.Player;
-import static UI.SystemUI.admin;
-import static UI.SystemUI.input;
-import static UI.SystemUI.theOwners;
+import static main.java.com.mohamed_hamdy.UI.SystemUI.accountMenu;
+import static main.java.com.mohamed_hamdy.UI.SystemUI.complaintForm;
+import static main.java.com.mohamed_hamdy.UI.SystemUI.isDigit;
+import static main.java.com.mohamed_hamdy.UI.SystemUI.isEmail;
+import static main.java.com.mohamed_hamdy.UI.SystemUI.isString;
+import static main.java.com.mohamed_hamdy.UI.SystemUI.stringToInt;
+import main.java.com.mohamed_hamdy.System.Player;
+import static main.java.com.mohamed_hamdy.UI.SystemUI.admin;
+import static main.java.com.mohamed_hamdy.UI.SystemUI.input;
+import static main.java.com.mohamed_hamdy.UI.SystemUI.theOwners;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -22,7 +22,8 @@ import java.util.Scanner;
  */
 
 /**
- * this class represent the UI of Player menu this class allow to Player Make Some functions like ---
+ * this class represent the UI of Player menu this class allow to Player Make
+ * Some functions like ---
  * 
  * 1- Deposit money
  * 2- check your balance
@@ -33,19 +34,22 @@ import java.util.Scanner;
  * 7- add complaints
  * 8- view inbox
  * 9- Logout
+ * 
  * @author Mohamed_El_Laithy
  */
 public class PlayerUI {
-    
+
     /**
      * Menu for the players
+     * 
      * @param input
      * @param userIndex
      * @param thePlayers
      * @param currentUser
-     * @param userBalance 
+     * @param userBalance
      */
-    public static void playerMenu(Scanner input ,int userIndex, ArrayList<Player> thePlayers,String currentUser,int userBalance) {
+    public static void playerMenu(Scanner input, int userIndex, ArrayList<Player> thePlayers, String currentUser,
+            int userBalance) {
         int balance = 0, teamNum = 0;
         String choice, temp;
         System.out.println("Welcome to player menu, please choose from the following");
@@ -70,7 +74,7 @@ public class PlayerUI {
         } else if (choice.equals("2")) {
             System.out.println("Your balance is: " + thePlayers.get(userIndex).getBalance());
         } else if (choice.equals("3")) {
-            Booking(input ,userIndex,thePlayers,currentUser,userBalance);
+            Booking(input, userIndex, thePlayers, currentUser, userBalance);
         } else if (choice.equals("4")) {
 
             System.out.println("Enter the Number of team members you want to create (from 1 to 5) ");
@@ -79,14 +83,14 @@ public class PlayerUI {
                 teamNum = stringToInt(temp);
                 if (teamNum >= 1 && teamNum <= 5) {
                     for (int i = 0; i < teamNum; i++) {
-                        createTeam(thePlayers,currentUser);
+                        createTeam(thePlayers, currentUser);
                     }
                     break;
                 } else {
                     System.out.println("please enter number from 1 to 5");
                 }
             }
-            playerMenu(input ,userIndex,thePlayers,currentUser,userBalance);
+            playerMenu(input, userIndex, thePlayers, currentUser, userBalance);
         } else if (choice.equals("5")) {
             playerCancelBooking(currentUser);
         } else if (choice.equals("6")) {
@@ -95,29 +99,30 @@ public class PlayerUI {
             complaintForm();
         } else if (choice.equals("8")) {
             thePlayers.get(userIndex).viewInbox();
-        }else if (choice.equals("9")) {
+        } else if (choice.equals("9")) {
             admin.displayAllPlaygrounds();
-        }else if (choice.equals("10")) {
+        } else if (choice.equals("10")) {
             admin.displayAllavailablePlaygroundsNames();
             System.out.println("\nEnter the Playground Name :");
             String PName = input.nextLine();
             admin.searchByName(PName);
-        }else if (choice.equals("11")) {
+        } else if (choice.equals("11")) {
             System.out.println("\nEnter the Playground Location :");
             admin.displayAllavailablePlaygroundsLocations();
             String PLoc = input.nextLine();
             admin.searchByLocation(PLoc);
-        }else if (choice.equals("12")) {
+        } else if (choice.equals("12")) {
             accountMenu();
         } else {
             System.out.println("invalid input please choose number from 1 to  10 ");
 
         }
-        playerMenu(input ,userIndex,thePlayers,currentUser,userBalance);
+        playerMenu(input, userIndex, thePlayers, currentUser, userBalance);
     }
-    //Booking a slot for the player
+    // Booking a slot for the player
 
-    public static void Booking(Scanner input ,int userIndex, ArrayList<Player> thePlayers,String currentUser,int userBalance) {
+    public static void Booking(Scanner input, int userIndex, ArrayList<Player> thePlayers, String currentUser,
+            int userBalance) {
         Player object = null;
         System.out.println("Do you want to look for a playground by:");
         System.out.println("1-Location");
@@ -138,13 +143,12 @@ public class PlayerUI {
             thePlayers.get(userIndex).setBalance(userBalance - cost);
         } else {
             System.out.println("please enter 1 or 2");
-            Booking(input ,userIndex,thePlayers,currentUser,userBalance);
+            Booking(input, userIndex, thePlayers, currentUser, userBalance);
         }
     }
-    
-    
-    //creates team of the player
-    public static void createTeam(ArrayList<Player> thePlayers,String currentUser) {
+
+    // creates team of the player
+    public static void createTeam(ArrayList<Player> thePlayers, String currentUser) {
         System.out.println("Type the email of the player: ");
         boolean found = false;
         String getRequest = input.nextLine();
@@ -165,13 +169,13 @@ public class PlayerUI {
         }
         if (found == false) {
             System.out.println("This Email isn't exist please try again");
-            createTeam(thePlayers,currentUser);
+            createTeam(thePlayers, currentUser);
         }
     }
-    
-    //player requests playground owner to cancel booking of his booked slots
 
-    public static void playerCancelBooking(String currentUser ) {
+    // player requests playground owner to cancel booking of his booked slots
+
+    public static void playerCancelBooking(String currentUser) {
         String playground, time, day, temp;
         int hours;
         System.out.println("Enter the name of the playground");
@@ -192,14 +196,16 @@ public class PlayerUI {
 
                 DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
                 LocalDateTime now = LocalDateTime.now();
-                String msg = "I want to cancel my booking at playground name: " + playground + " At time " + time + " At Day " + day + " , I have booked " + hours + " hours" + " This Msg was sent at " + dateFormat.format(now);
+                String msg = "I want to cancel my booking at playground name: " + playground + " At time " + time
+                        + " At Day " + day + " , I have booked " + hours + " hours" + " This Msg was sent at "
+                        + dateFormat.format(now);
                 theOwners.get(i).addRecieveMsg(msg);
             }
         }
     }
-    
-    //Checks if a player exists
-    public static boolean isExistPlayer(ArrayList<Player> thePlayers,String name) {
+
+    // Checks if a player exists
+    public static boolean isExistPlayer(ArrayList<Player> thePlayers, String name) {
         for (int i = 0; i < thePlayers.size(); i++) {
             if (name.equalsIgnoreCase(thePlayers.get(i).getEmail())) {
                 return true;
@@ -207,5 +213,5 @@ public class PlayerUI {
         }
         return false;
     }
-    
+
 }

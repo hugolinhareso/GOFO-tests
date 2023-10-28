@@ -1,4 +1,4 @@
-package UI;
+package main.java.com.mohamed_hamdy.UI;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -6,10 +6,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
-import System.Administrator;
-import System.eWallet;
-import System.Player;
-import System.PlaygroundOwner;
+import main.java.com.mohamed_hamdy.System.Administrator;
+import main.java.com.mohamed_hamdy.System.eWallet;
+import main.java.com.mohamed_hamdy.System.Player;
+import main.java.com.mohamed_hamdy.System.PlaygroundOwner;
 
 /**
  * This class is the class that controls all the UI classes in the system, and
@@ -19,10 +19,10 @@ import System.PlaygroundOwner;
  */
 public class SystemUI {
 
-    static String currentUser = "A";//Current logged in user
-    static int userBalance = 0;//Current user balance
-    static int userIndex = 0;//Current user Index
-    static String userType = "A";//Current user Type
+    static String currentUser = "A";// Current logged in user
+    static int userBalance = 0;// Current user balance
+    static int userIndex = 0;// Current user Index
+    static String userType = "A";// Current user Type
     static Administrator admin = new Administrator();
     static ArrayList<Player> thePlayers = new ArrayList<Player>();
     static ArrayList<PlaygroundOwner> theOwners = new ArrayList<PlaygroundOwner>();
@@ -30,6 +30,7 @@ public class SystemUI {
 
     /**
      * checks if the input is string
+     * 
      * @param phrase String phrase
      * @return phrase
      */
@@ -45,6 +46,7 @@ public class SystemUI {
 
     /**
      * Converts string to int
+     * 
      * @param phrase String phrase
      * @return integer
      */
@@ -67,6 +69,7 @@ public class SystemUI {
 
     /**
      * checks if the input is integer
+     * 
      * @param phrase String phrase
      * @return phrase
      */
@@ -109,7 +112,7 @@ public class SystemUI {
         }
     }
 
-    //login menu
+    // login menu
     /**
      * Menu function it Determine the user type if owner or player or
      * administrator
@@ -140,11 +143,13 @@ public class SystemUI {
 
     /**
      * Check if the email format is correct
+     * 
      * @param email String email
      * @return email
      */
     public static String isEmail(String email) {
-        String emailReg = "^[a-zA-Z0-9_+&-]+(?:\\." + "[a-zA-Z0-9_+&-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-z" + "A-Z]{2,7}$";
+        String emailReg = "^[a-zA-Z0-9_+&-]+(?:\\." + "[a-zA-Z0-9_+&-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-z"
+                + "A-Z]{2,7}$";
         Pattern emaill = Pattern.compile(emailReg);
         if (email == null || email.equals("")) {
             System.out.println("please enter correct form of email");
@@ -239,7 +244,8 @@ public class SystemUI {
         System.out.println("Enter your password");
         String pass = input.nextLine();
         for (int i = 0; i < thePlayers.size(); i++) {
-            if (thePlayers.get(i).getEmail().equalsIgnoreCase(email) && thePlayers.get(i).getPassword().equalsIgnoreCase(pass)) {
+            if (thePlayers.get(i).getEmail().equalsIgnoreCase(email)
+                    && thePlayers.get(i).getPassword().equalsIgnoreCase(pass)) {
                 SystemUI.currentUser = email;
                 userBalance = thePlayers.get(i).getBalance();
                 userIndex = i;
@@ -249,7 +255,8 @@ public class SystemUI {
             }
         }
         for (int i = 0; i < theOwners.size(); i++) {
-            if (theOwners.get(i).getEmail().equalsIgnoreCase(email) && theOwners.get(i).getPassword().equalsIgnoreCase(pass)) {
+            if (theOwners.get(i).getEmail().equalsIgnoreCase(email)
+                    && theOwners.get(i).getPassword().equalsIgnoreCase(pass)) {
                 currentUser = email;
                 userIndex = i;
                 userType = "owner";
@@ -290,9 +297,11 @@ public class SystemUI {
                     if (theOwners.get(i).getEmail().equalsIgnoreCase(personEmail)) {
                         bool = true;
                         if (userType.equals("owner")) {
-                            complaint = "from " + theOwners.get(userIndex).getEmail() + " about " + theOwners.get(i).getEmail() + " his complaint ";
+                            complaint = "from " + theOwners.get(userIndex).getEmail() + " about "
+                                    + theOwners.get(i).getEmail() + " his complaint ";
                         } else if (userType.equals("player")) {
-                            complaint = "from " + thePlayers.get(userIndex).getEmail() + " about " + theOwners.get(i).getEmail() + " his complaint ";
+                            complaint = "from " + thePlayers.get(userIndex).getEmail() + " about "
+                                    + theOwners.get(i).getEmail() + " his complaint ";
                         }
                         break;
                     }
@@ -311,9 +320,11 @@ public class SystemUI {
                 for (int i = 0; i < thePlayers.size(); i++) {
                     if (thePlayers.get(i).getEmail().equalsIgnoreCase(personEmail)) {
                         if (userType.equalsIgnoreCase("owner")) {
-                            complaint = "from " + theOwners.get(userIndex).getEmail() + " about " + thePlayers.get(i).getEmail() + " his complaint ";
+                            complaint = "from " + theOwners.get(userIndex).getEmail() + " about "
+                                    + thePlayers.get(i).getEmail() + " his complaint ";
                         } else if (userType.equalsIgnoreCase("player")) {
-                            complaint = "from " + thePlayers.get(userIndex).getEmail() + " about " + thePlayers.get(i).getEmail() + " his complaint ";
+                            complaint = "from " + thePlayers.get(userIndex).getEmail() + " about "
+                                    + thePlayers.get(i).getEmail() + " his complaint ";
                         }
                         bool = true;
                         inputChecker = false;
@@ -337,8 +348,10 @@ public class SystemUI {
         complaint += comp;
         admin.addComplaints(complaint);
     }
+
     /**
      * Main Function of System
+     * 
      * @param args String[] args
      */
     public static void main(String[] args) {

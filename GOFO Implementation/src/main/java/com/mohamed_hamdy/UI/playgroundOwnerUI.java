@@ -1,16 +1,15 @@
-package UI;
+package main.java.com.mohamed_hamdy.UI;
 
-
-import System.Playground;
-import System.PlaygroundOwner;
-import static UI.SystemUI.accountMenu;
-import static UI.SystemUI.admin;
-import static UI.SystemUI.complaintForm;
-import static UI.SystemUI.isDigit;
-import static UI.SystemUI.isString;
-import static UI.SystemUI.stringToInt;
-import static UI.SystemUI.thePlayers;
-import static UI.PlayerUI.isExistPlayer;
+import main.java.com.mohamed_hamdy.System.Playground;
+import main.java.com.mohamed_hamdy.System.PlaygroundOwner;
+import static main.java.com.mohamed_hamdy.UI.SystemUI.accountMenu;
+import static main.java.com.mohamed_hamdy.UI.SystemUI.admin;
+import static main.java.com.mohamed_hamdy.UI.SystemUI.complaintForm;
+import static main.java.com.mohamed_hamdy.UI.SystemUI.isDigit;
+import static main.java.com.mohamed_hamdy.UI.SystemUI.isString;
+import static main.java.com.mohamed_hamdy.UI.SystemUI.stringToInt;
+import static main.java.com.mohamed_hamdy.UI.SystemUI.thePlayers;
+import static main.java.com.mohamed_hamdy.UI.PlayerUI.isExistPlayer;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -21,7 +20,8 @@ import java.util.Scanner;
  */
 
 /**
- * this class represent the UI of Playergound owner menu this class allow to Playergound owner Make Some functions like ---
+ * this class represent the UI of Playergound owner menu this class allow to
+ * Playergound owner Make Some functions like ---
  * 
  * 1- add playground
  * 2- update playground
@@ -31,12 +31,14 @@ import java.util.Scanner;
  * 6- show messages
  * 7- Cancel booking
  * 8- Logout
+ * 
  * @author Mohamed_El_Laithy
  */
 public class playgroundOwnerUI {
-    
-    //Menu for the playground owners
-    public static void playgroundOwnerMenu(Scanner input ,int userIndex, ArrayList<PlaygroundOwner> theOwners,String currentUser) {
+
+    // Menu for the playground owners
+    public static void playgroundOwnerMenu(Scanner input, int userIndex, ArrayList<PlaygroundOwner> theOwners,
+            String currentUser) {
         String choice, playground;
         System.out.println("Welcome to playground owner profile, please choose from the following");
         System.out.println("1- add playground");
@@ -49,7 +51,7 @@ public class playgroundOwnerUI {
         System.out.println("8- Logout");
         choice = input.nextLine();
         if (choice.equals("1")) {
-            addPlayground(input ,theOwners,currentUser);
+            addPlayground(input, theOwners, currentUser);
         } else if (choice.equals("2")) {
             System.out.println("Enter the name of playground you want to replace");
             playground = input.nextLine();
@@ -70,16 +72,18 @@ public class playgroundOwnerUI {
         } else if (choice.equals("6")) {
             theOwners.get(userIndex).displayRecieveMsg();
         } else if (choice.equals("7")) {
-            ownerCancelBooking(input ,theOwners,currentUser);
+            ownerCancelBooking(input, theOwners, currentUser);
         } else if (choice.equals("8")) {
             accountMenu();
         } else {
             System.out.println("invalid input please choose number from 1 to  7 ");
         }
-        playgroundOwnerMenu(input , userIndex,theOwners,currentUser);
+        playgroundOwnerMenu(input, userIndex, theOwners, currentUser);
     }
-    //registering playground and adding it to the playground owner's list of playgrounds, then requesting for approve
-    public static void addPlayground(Scanner input , ArrayList<PlaygroundOwner> theOwners,String currentUser) {
+
+    // registering playground and adding it to the playground owner's list of
+    // playgrounds, then requesting for approve
+    public static void addPlayground(Scanner input, ArrayList<PlaygroundOwner> theOwners, String currentUser) {
         boolean check = false;
         String name;
         for (int i = 0; i < theOwners.size(); i++) {
@@ -89,7 +93,7 @@ public class playgroundOwnerUI {
                 System.out.println("Enter the playground name: ");
                 String getName = input.nextLine();
                 while (true) {
-                    boolean checkExistence = playgroundExists(theOwners,getName);
+                    boolean checkExistence = playgroundExists(theOwners, getName);
                     if (checkExistence) {
                         System.out.println("This name already exists please enter another name");
                         getName = input.nextLine();
@@ -100,7 +104,8 @@ public class playgroundOwnerUI {
                 newGround.setName(getName);
                 newGround.setLocation();
                 newGround.setPrice();
-                System.out.println("Enter the playground Status of availability by typing ( available or not available)");
+                System.out
+                        .println("Enter the playground Status of availability by typing ( available or not available)");
                 newGround.setStatus();
                 newGround.setOwner(currentUser);
                 newGround.setBooking();
@@ -118,15 +123,17 @@ public class playgroundOwnerUI {
             System.out.println("Failed to add the playground");
         }
     }
-    //Owners choice if the player exceeded the allowed time to cancel booking or not and decides if he'll cancell booking
-        public static void ownerCancelBooking(Scanner input , ArrayList<PlaygroundOwner> theOwners,String currentUser) {
+
+    // Owners choice if the player exceeded the allowed time to cancel booking or
+    // not and decides if he'll cancell booking
+    public static void ownerCancelBooking(Scanner input, ArrayList<PlaygroundOwner> theOwners, String currentUser) {
         String player, time, day, temp, playground;
         int hours = 0;
         System.out.println("The following Information is required to cancel booking.");
         System.out.println("Enter the player email");
         player = input.nextLine();
         while (true) {
-            if (!isExistPlayer(thePlayers,player)) {
+            if (!isExistPlayer(thePlayers, player)) {
                 System.out.println("This player doesn't exist, Please enter his correct email");
                 player = input.nextLine();
             } else {
@@ -161,14 +168,15 @@ public class playgroundOwnerUI {
                     }
                 }
                 System.out.println("Successfully cancelled the booking");
-                System.out.println("A transaction with value " + amount + " Have been transferred from your balance to " + player);
+                System.out.println(
+                        "A transaction with value " + amount + " Have been transferred from your balance to " + player);
                 break;
             }
         }
     }
-    //Checks if this playground exists
+    // Checks if this playground exists
 
-    public static boolean playgroundExists(ArrayList<PlaygroundOwner> theOwners,String playground) {
+    public static boolean playgroundExists(ArrayList<PlaygroundOwner> theOwners, String playground) {
         for (int i = 0; i < theOwners.size(); i++) {
             if (theOwners.get(i).existPlayground(playground)) {
                 return true;
@@ -176,5 +184,5 @@ public class playgroundOwnerUI {
         }
         return false;
     }
-    
+
 }
