@@ -1,9 +1,9 @@
-package main.java.com.mohamed_hamdy.System;
+package System;
 
-import main.java.com.mohamed_hamdy.System.eWallet;
-import static main.java.com.mohamed_hamdy.System.Administrator.Approved;
+import System.eWallet;
+import static System.Administrator.Approved;
 
-import main.java.com.mohamed_hamdy.UI.SystemUI;
+import UI.SystemUI;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -53,7 +53,7 @@ public class Player extends userProfile {
      * player Cancel Booking in cancellation period time
      *
      * @param playground String playground
-     * @param time       String time
+     * @param time String time 
      */
     public void CancelBooking(String playground, String time) {
         for (int i = 0; i < Bookedslots.size(); i++) {
@@ -75,7 +75,7 @@ public class Player extends userProfile {
     /**
      * get available slots for playground
      *
-     * @param time       String time
+     * @param time String time
      * @param playground String playground
      */
     public void bookingSlots(String time, String playground) {
@@ -171,7 +171,7 @@ public class Player extends userProfile {
     /**
      * used to send emails to team
      *
-     * @param x String parameter x
+     * @param x String parameter x 
      */
     public void addInbox(String x) {
         Inbox.add(x);

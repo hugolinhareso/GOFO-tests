@@ -1,9 +1,9 @@
-package main.java.com.mohamed_hamdy.UI;
+package UI;
 
-import static main.java.com.mohamed_hamdy.UI.SystemUI.accountMenu;
-import static main.java.com.mohamed_hamdy.UI.SystemUI.admin;
-import static main.java.com.mohamed_hamdy.UI.SystemUI.input;
-import static main.java.com.mohamed_hamdy.UI.SystemUI.isString;
+import static UI.SystemUI.accountMenu;
+import static UI.SystemUI.admin;
+import static UI.SystemUI.input;
+import static UI.SystemUI.isString;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,9 +12,7 @@ import static main.java.com.mohamed_hamdy.UI.SystemUI.isString;
  */
 
 /**
- * this class represent the UI of Admin menu this class allow to admin to give
- * approve to playgrounds that added by playgrounds owners
- * 
+ * this class represent the UI of Admin menu this class allow to admin to give approve to playgrounds that added by playgrounds owners
  * @author Mohamed_El_Laithy
  */
 public class AdminUI {

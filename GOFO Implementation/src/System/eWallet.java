@@ -1,7 +1,7 @@
-package main.java.com.mohamed_hamdy.System;
+package System;
 
 import java.util.Scanner;
-import main.java.com.mohamed_hamdy.UI.SystemUI;
+import UI.SystemUI;
 
 /**
  * eWallet class for user it allow to user to deposit amount or withdraw amount
@@ -55,7 +55,7 @@ public class eWallet {
     /**
      * get user balance
      *
-     * @return balance
+     * @return balance 
      */
     public int getBalance() {
         return balance;

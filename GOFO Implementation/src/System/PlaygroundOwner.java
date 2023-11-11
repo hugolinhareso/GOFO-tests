@@ -1,9 +1,9 @@
-package main.java.com.mohamed_hamdy.System;
+package System;
 
-import main.java.com.mohamed_hamdy.System.Playground;
-import main.java.com.mohamed_hamdy.System.userProfile;
-import main.java.com.mohamed_hamdy.System.eWallet;
-import main.java.com.mohamed_hamdy.UI.SystemUI;
+import System.Playground;
+import System.userProfile;
+import System.eWallet;
+import UI.SystemUI;
 import java.util.Scanner;
 import java.util.Vector;
 import java.util.ArrayList;
@@ -111,8 +111,7 @@ public class PlaygroundOwner extends userProfile {
                 listOfPlayground.get(playgroundIndex).setPrice();
                 System.out.println("playground price updated successfully!!");
             } else if (choice == 4) {
-                System.out.println(
-                        "Enter the playground new Status of availability by typing ( available or not available)");
+                System.out.println("Enter the playground new Status of availability by typing ( available or not available)");
                 listOfPlayground.get(playgroundIndex).setStatus();
                 System.out.println("playground status updated successfully!!");
 
@@ -133,8 +132,8 @@ public class PlaygroundOwner extends userProfile {
      * owner update Playground Status
      *
      * @param playgroundName String playgroundName
-     * @param time           String time
-     * @param day            String day
+     * @param time String time
+     * @param day String day
      */
     public void updatePlaygroundStatus(String playgroundName, String time, String day) {
         boolean bool = false, inputChecker = true;
@@ -180,7 +179,7 @@ public class PlaygroundOwner extends userProfile {
      * owner use it to make payment process
      *
      * @param playground String playground
-     * @param hours      int hours number
+     * @param hours int hours number
      * @return
      */
     public int payMoney(String playground, int hours) {
