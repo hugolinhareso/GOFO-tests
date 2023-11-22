@@ -15,6 +15,7 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AdministratorTest {
@@ -113,7 +114,7 @@ public class AdministratorTest {
         InputStream inputStreamSimulado = new ByteArrayInputStream(inputSimulado.getBytes());
         System.setIn(inputStreamSimulado);
         playground = new Playground();
-
+        playground.setLocation();
         playground = loadPlayground();
         admin.Approved.add(playground);
 
@@ -276,6 +277,63 @@ public class AdministratorTest {
         assertEquals(1, admin.Approved.size());
         assertEquals(0, admin.suspended.size());
     }
+    
+    @Test
+    public void DeveRetornarOkQuandoSolicitarReservaPorLocal(){
+        String inputSimulado = "Brazil";
+        InputStream inputStreamSimulado = new ByteArrayInputStream(inputSimulado.getBytes());
+        System.setIn(inputStreamSimulado);
+        playground = new Playground();
+        playground = loadPlayground();
+        playground.setLocation();
+
+        inputSimulado = "1\n1\n20";
+        inputStreamSimulado = new ByteArrayInputStream(inputSimulado.getBytes());
+        System.setIn(inputStreamSimulado);
+        admin = new Administrator();
+
+        admin.Approved.add(playground);
+
+        int res = admin.bookByLocation("Brazil", "PlayerOne", 500);
+        assertEquals(0, res);
+    }
+
+    @Test
+    public void DeveRetornarOkQuandoSolicitarReservaPorNome(){
+        playground = new Playground();
+        playground = loadPlayground();
+
+        String inputSimulado = "300\n1\n20";
+        InputStream inputStreamSimulado = new ByteArrayInputStream(inputSimulado.getBytes());
+        System.setIn(inputStreamSimulado);
+        admin = new Administrator();
+
+        admin.Approved.add(playground);
+
+        int res = admin.bookByName("Happy Playground", "PlayerOne", 500);
+        assertEquals(0, res);
+    }
+
+    @Test
+    public void DeveRetornarCustoQuandoSolicitarReservaPorNome(){
+        String inputSimulado ="available";
+        InputStream inputStreamSimulado = new ByteArrayInputStream(inputSimulado.getBytes());
+        System.setIn(inputStreamSimulado);
+        playground = new Playground();
+        playground = loadPlayground();
+        playground.setStatus();
+        
+        inputSimulado = "-1\n1\n20";
+        inputStreamSimulado = new ByteArrayInputStream(inputSimulado.getBytes());
+        System.setIn(inputStreamSimulado);
+        admin = new Administrator();
+
+        admin.Approved.add(playground);
+
+        int res = admin.bookByName("Happy Playground", "PlayerOne", 500);
+        assertEquals(0, res); // verificando com preço zerado
+    }
+    
     // =============================== cenários positivos ================================= //
 
 
@@ -363,7 +421,6 @@ public class AdministratorTest {
     public Playground loadPlayground(){
         playground.setName("Happy Playground");
         playground.setOwner("Happy Inc");
-        playground.setLocation();
 
         return playground;
     }
