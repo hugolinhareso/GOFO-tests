@@ -21,3 +21,13 @@ An eWallet is an electronic payment system used to allow players to pay for the 
 <h4>3.3 Player</h4>
 This is a person who is interested in booking a playground. He registers with the system and creates a profile as described above. He can display the playgrounds near to him or in a specific location on specific dates. He can filter them by the hours and date he selects. He can book a time slot of 1 or more hours if available and not booked. Booking includes (1) Checking available grounds and time slots (2) Selecting the free time slot(s) he wants (3) Calculating the total price (4) Paying the amount from his eWallet to the eWallet of the owner (5) The system updates the status of the booked slot(s) so no one else can book it, and optionally (6) The player can send invitation to his team members via email. To make this last step easy, he can create his favorite team and store their names and emails. Then he can select the entire team at once to send emails to. A player can also cancel a booking if within the cancellation period. 
 
+<!-- DOCUMENTACAO -->
+## Documentação 📖
+  
+A documentação está disponível na Wiki do repositório, basta clicar no botão abaixo: 
+
+<a href="https://github.com/hugolinhareso/GOFO-tests/wiki" target="_blank">
+  <img alt="a" src="https://img.shields.io/badge/read-documentation-blue?style=for-the-badge">
+</a>
+
+***
