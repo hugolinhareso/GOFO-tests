@@ -19,14 +19,12 @@ public class CSU06Test {
     @Rule
     public final ExpectedSystemExit exit = ExpectedSystemExit.none();
 
-    private SystemUI sistema;
     private Playground playground;
     private Administrator administrator;
     private PlaygroundOwner playgroundOwner;
     
     @Test
     public void testeSextoCasoDeUso06() {
-        sistema = new SystemUI();
         administrator = new Administrator();
         playground = new Playground();
         playgroundOwner = new PlaygroundOwner();
@@ -45,12 +43,12 @@ public class CSU06Test {
         playgroundOwner.setLocation("SBC");
         playgroundOwner.setPhone(40028922);
         playgroundOwner.addPlayground(playground);
-        sistema.theOwners.add(playgroundOwner);
+
         exit.expectSystemExitWithStatus(0);
         systemIn.provideLines("2", "Thales", "Lacerda","1", "teste", "thalesdonoPlayground@privado.com", "40028922", "SP", "player", "20000", "123", 
         "1", "thalesdonoPlayground@privado.com", "teste", "10", "HappyPlayground", "11", "SP", 
         "12", "3"); //verificou o que o player precisava para localizar os playgrounds
-        sistema.accountMenu();
+        SystemUI.accountMenu();
 
     }
 }

@@ -19,14 +19,12 @@ public class CSU05Test {
     @Rule
     public final ExpectedSystemExit exit = ExpectedSystemExit.none();
 
-    private SystemUI sistema;
     private Playground playground;
     private Administrator administrator;
     private PlaygroundOwner playgroundOwner;
 
     @Test
     public void testeQuintoCasoDeUso05() {
-        sistema = new SystemUI();
         administrator = new Administrator();
         playground = new Playground();
         playgroundOwner = new PlaygroundOwner();
@@ -45,13 +43,12 @@ public class CSU05Test {
         playgroundOwner.setLocation("SBC");
         playgroundOwner.setPhone(40028922);
         playgroundOwner.addPlayground(playground);
-        sistema.theOwners.add(playgroundOwner);
         exit.expectSystemExitWithStatus(0);
         systemIn.provideLines("2", "Thales", "Lacerda","1", "teste", "thalesdonoPlayground@privado.com", "40028922", "SP", "player", "20000", "123", 
         "1", "thalesdonoPlayground@privado.com", "teste", "10", "HappyPlayground", "3", "2", 
         "HappyPlayground", "6", "8", "friday", "4", "1", "thalesdonoPlayground@privado.com", "12", 
         "1", "lili@gmail.com", "teste", "8", "12", "3"); 
-        sistema.accountMenu();
+        SystemUI.accountMenu();
 
     }
 }
