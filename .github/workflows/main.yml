@@ -27,6 +27,27 @@ jobs:
         run: mvn -B package --file 'GOFO Implementation/pom.xml'
         working-directory: 'GOFO Implementation'
 
-      - name: Run Tests with Maven
-        run: mvn test --file 'GOFO Implementation/pom.xml'
+      - name: Run Unit Tests with Maven
+        run: |
+          mvn test -Dtest=AdministratorTest test;
+          mvn test -Dtest=PlayGroundScheduleTest test;
+          mvn test -Dtest=PlayerTest test;
+          mvn test -Dtest=PlaygroundOwnerTest test;
+          mvn test -Dtest=PlaygroundTest test;
+          mvn test -Dtest=eWalletTest test;
+          mvn test -Dtest=userProfileTest test;
+          EXIT_CODE=$?
+        working-directory: 'GOFO Implementation'
+
+      - name: Run Use Cases Tests with Maven
+        run: |
+          mvn test -Dtest=CSU01Test test;
+          mvn test -Dtest=CSU02Test test;
+          mvn test -Dtest=CSU03Test test;
+          mvn test -Dtest=CSU04Test test;
+          mvn test -Dtest=CSU05Test test;
+          mvn test -Dtest=CSU06Test test;
+          mvn test -Dtest=CSU07Test test;
+          mvn test -Dtest=CSU08Test test;
+          EXIT_CODE=$?
         working-directory: 'GOFO Implementation'
