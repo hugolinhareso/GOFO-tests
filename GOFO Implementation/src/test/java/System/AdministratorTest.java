@@ -360,6 +360,47 @@ public class AdministratorTest {
     }
 
     @Test
+    public void DeveRetornarErroQuandoSolicitarReservaPorNomeInexistente(){
+        String inputSimulado ="available";
+        InputStream inputStreamSimulado = new ByteArrayInputStream(inputSimulado.getBytes());
+        System.setIn(inputStreamSimulado);
+        playground = new Playground();
+        playground = loadPlayground();
+        playground.setStatus();
+        playground.setName("HappyPlayground");
+
+        inputSimulado = "HappyPlayground\n1\n5\n20";
+        inputStreamSimulado = new ByteArrayInputStream(inputSimulado.getBytes());
+        System.setIn(inputStreamSimulado);
+        admin = new Administrator();
+
+        admin.Approved.add(playground);
+
+        int res = admin.bookByName("sad Playground", "PlayerOne", 500);
+        assertEquals(0, res); // verificando com preço zerado
+    }
+
+    @Test
+    public void DeveRetornarErroQuandoSolicitarBuscaPorNomeInexistente(){
+        String inputSimulado ="available";
+        InputStream inputStreamSimulado = new ByteArrayInputStream(inputSimulado.getBytes());
+        System.setIn(inputStreamSimulado);
+        playground = new Playground();
+        playground = loadPlayground();
+        playground.setStatus();
+        playground.setName("HappyPlayground");
+
+        inputSimulado = "HappyPlayground\n1\n5\n20";
+        inputStreamSimulado = new ByteArrayInputStream(inputSimulado.getBytes());
+        System.setIn(inputStreamSimulado);
+        admin = new Administrator();
+
+        admin.Approved.add(playground);
+
+        admin.searchByName("sad Playground");
+    }
+
+    @Test
     public void DeveRetornarErroQuandoSolicitadoListaPlaygroundsInexistentes(){
 
         admin.displayAllPlaygrounds();

@@ -45,6 +45,16 @@ public class PlaygroundTest {
     }
 
     @Test
+    public void testSetAndGetLocation() {
+        String inputSimulado = "Brazil";
+        InputStream inputStreamSimulado = new ByteArrayInputStream(inputSimulado.getBytes());
+        System.setIn(inputStreamSimulado);
+        playground = new Playground();
+        playground.setLocation();
+        assertEquals("Brazil", playground.getLocation());
+    }
+
+    @Test
     public void DeveRetornarOkQuandoSolicitadoSlotsDisponiveis() {
         String inputSimulado = "available";
         InputStream inputStreamSimulado = new ByteArrayInputStream(inputSimulado.getBytes());
