@@ -19,14 +19,14 @@ import System.PlaygroundOwner;
  */
 public class SystemUI {
 
-    static String currentUser = "A";//Current logged in user
-    static int userBalance = 0;//Current user balance
-    static int userIndex = 0;//Current user Index
-    static String userType = "A";//Current user Type
-    static Administrator admin = new Administrator();
-    static ArrayList<Player> thePlayers = new ArrayList<Player>();
-    static ArrayList<PlaygroundOwner> theOwners = new ArrayList<PlaygroundOwner>();
-    static Scanner input = new Scanner(System.in);
+    public static String currentUser = "A";//Current logged in user
+    public static int userBalance = 0;//Current user balance
+    public static int userIndex = 0;//Current user Index
+    public static String userType = "A";//Current user Type
+    public static Administrator admin = new Administrator();
+    public static ArrayList<Player> thePlayers = new ArrayList<Player>();
+    public static ArrayList<PlaygroundOwner> theOwners = new ArrayList<PlaygroundOwner>();
+    public static Scanner input = new Scanner(System.in);
 
     /**
      * checks if the input is string
