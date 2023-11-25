@@ -30,7 +30,7 @@ public class CSU01Test {
         System.setIn(inputStreamSimulado);
         Player player = new Player();
         exit.expectSystemExitWithStatus(0);
-        sistema.accountMenu();
+        SystemUI.accountMenu();
     }
 }
     
