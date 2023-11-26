@@ -16,12 +16,14 @@ public class CSU08Test {
     @Rule
     public final ExpectedSystemExit exit = ExpectedSystemExit.none();
 
+    private SystemUI sistema;
     private Playground playground;
     private Administrator administrator;
     private PlaygroundOwner playgroundOwner;
 
     @Test
     public void testeOitavoCasoDeUso08() {
+        sistema = new SystemUI();
         administrator = new Administrator();
         playground = new Playground();
         playgroundOwner = new PlaygroundOwner();
@@ -40,13 +42,14 @@ public class CSU08Test {
         playgroundOwner.setLocation("SBC");
         playgroundOwner.setPhone(40028922);
         playgroundOwner.addPlayground(playground);
+        sistema.theOwners.add(playgroundOwner);
 
         exit.expectSystemExitWithStatus(0);
         //vai precisar de mais de 1 player, pois quer montar uma equipe com vários players
         systemIn.provideLines("2", "Thales", "Lacerda","20", "teste", "thalesdonoplayground@privado.com", "40028922", "SP", "player", "20000", "123", 
                                        "2", "Teste", "testetwo","276", "teste", "playerone@privado.com", "40028923", "SP", "player", "20000", "123", 
         "1", "thalesdonoplayground@privado.com", "teste", "4","1", "playerone@privado.com", "12", "3"); 
-        SystemUI.accountMenu();
+        sistema.accountMenu();
 
     }
 }

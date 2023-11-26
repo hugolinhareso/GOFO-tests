@@ -3,7 +3,6 @@ package System;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -13,8 +12,6 @@ import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 import UI.SystemUI;
 
 public class CSU06Test {
-
-    private final InputStream originalSystemIn = System.in;
 
     @Rule
     public final TextFromStandardInputStream systemIn = TextFromStandardInputStream.emptyStandardInputStream();
@@ -56,9 +53,5 @@ public class CSU06Test {
         sistema.accountMenu();
 
     }
-
-    @After
-    public void restoreSystemInputOutput() {
-        System.setIn(originalSystemIn);
-    }
+    
 }
