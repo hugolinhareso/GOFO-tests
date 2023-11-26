@@ -10,41 +10,36 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.ExpectedSystemExit;
+import org.junit.contrib.java.lang.system.SystemOutRule;
+import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 import org.mockito.MockitoAnnotations;
 
 import UI.SystemUI;
 
 public class CSU02Test {
 
-    private SystemUI sistema;
-   
+    private final InputStream originalSystemIn = System.in;
+    private final SystemOutRule systemOutRule = new SystemOutRule().enableLog();
+
+    @Rule
+    public final TextFromStandardInputStream systemIn = TextFromStandardInputStream.emptyStandardInputStream();
+
     @Rule
     public final ExpectedSystemExit exit = ExpectedSystemExit.none();
 
-    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    private SystemUI sistema;
 
-    private final InputStream originalSystemIn = System.in;
     @Before
     public void setUp() {
-        System.setOut(new PrintStream(outputStreamCaptor));
         System.setIn(System.in);
     }
 
     @Test
     public void TesteSegundoCasoDeUso02() {
-        String inputSimulado ="2\nThales\nLacerda\n1\nteste\nthalesdonoPlayground@privado.com\n40028922\nSP\nplayground owner\n123\n3\n3";
-        InputStream inputStreamSimulado = new ByteArrayInputStream(inputSimulado.getBytes());
-        System.setIn(inputStreamSimulado);
-        sistema = new SystemUI(); 
-
-        PlaygroundOwner playgroundOwner = new PlaygroundOwner();
-
-        inputSimulado ="1000";
-        inputStreamSimulado = new ByteArrayInputStream(inputSimulado.getBytes());
-        System.setIn(inputStreamSimulado);
-        eWallet eWallet = new eWallet();
-
+        sistema = new SystemUI();
         exit.expectSystemExitWithStatus(0);
+        
+        systemIn.provideLines("2","Thales","Lacerda","1","teste","thalesPlayground@privado.com", "40028922", "SP", "playground owner", "500", "25", "1", "thalesPlayground@privado.com", "teste", "1", "HappyPlayground", "BrasilSPSBC", "500", "available", "5", "10", "2", "8", "3");
         sistema.accountMenu();
     }
 
