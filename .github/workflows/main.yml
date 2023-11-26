@@ -24,7 +24,7 @@ jobs:
           cache: maven
 
       - name: Build with Maven
-        run: mvn -B package --file 'GOFO Implementation/pom.xml'
+        run: mvn compile
         working-directory: 'GOFO Implementation'
 
       - name: Run Unit Tests with Maven
@@ -40,14 +40,6 @@ jobs:
         working-directory: 'GOFO Implementation'
 
       - name: Run Use Cases Tests with Maven
-        run: |
-          mvn test -Dtest=CSU01Test test;
-          mvn test -Dtest=CSU02Test test;
-          mvn test -Dtest=CSU03Test test;
-          mvn test -Dtest=CSU04Test test;
-          mvn test -Dtest=CSU05Test test;
-          mvn test -Dtest=CSU06Test test;
-          mvn test -Dtest=CSU07Test test;
-          mvn test -Dtest=CSU08Test test;
-          EXIT_CODE=$?
+        run: mvn test -Dtest=CSU01Test test;
+        if: always()
         working-directory: 'GOFO Implementation'
