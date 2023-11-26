@@ -42,6 +42,6 @@ jobs:
 
       - name: Run Use Cases Tests with Maven
         run: |
-          mvn test -Dtest=UC01Test test;
+          mvn test -Dtest=CSU01Test test;
           EXIT_CODE=$?
         working-directory: 'GOFO Implementation'
