@@ -40,8 +40,14 @@ jobs:
           EXIT_CODE=$?
         working-directory: 'GOFO Implementation'
 
-      - name: Run Use Cases Tests with Maven
+      - name: Run Use Case 01 with Maven
         run: |
           mvn test -Dtest=CSU01Test test --file 'GOFO Implementation/pom.xml';
           EXIT_CODE=$?
         working-directory: 'GOFO Implementation'
+
+      - name: Run Use Case 02 with Maven
+        run: |
+          mvn test -Dtest=CSU02Test test --file 'GOFO Implementation/pom.xml';
+          EXIT_CODE=$?
+        working-directory: 'GOFO Implementation'  
