@@ -5,7 +5,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 
@@ -15,7 +14,6 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AdministratorTest {
@@ -34,14 +32,8 @@ public class AdministratorTest {
 
     @Before
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
         System.setOut(new PrintStream(outputStreamCaptor));
         System.setIn(System.in);
-    }
-
-    @After
-    public void tearDown() {
-        System.setOut(standardOut);
     }
 
     // =============================== cenários negativos ================================= //

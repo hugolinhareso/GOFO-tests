@@ -1,7 +1,6 @@
 package System;
 
 import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
-import org.mockito.MockitoAnnotations;
 
 import UI.SystemUI;
 
@@ -30,11 +29,9 @@ public class CSU04Test {
     
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
-    private final PrintStream standardOut = System.out;
     private final InputStream originalSystemIn = System.in;
     @Before
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
         System.setOut(new PrintStream(outputStreamCaptor));
         System.setIn(System.in);
     }
@@ -55,7 +52,7 @@ public class CSU04Test {
         systemIn.provideLines("0","10");
         playground.setBooking();
         systemIn.provideLines("yes");
-        administrator.Requested.add(playground);
+        administrator.playgroundRequests(playground);
         administrator.approvePlayground();
         exit.expectSystemExitWithStatus(0);
         systemIn.provideLines("2", "Thales", "Lacerda","1", "123456", "thalesdonoPlayground@privado.com", "40028922", 
