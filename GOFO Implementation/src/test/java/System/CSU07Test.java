@@ -1,10 +1,14 @@
 package System;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
+import org.mockito.MockitoAnnotations;
 
 import UI.SystemUI;
 
@@ -20,6 +24,16 @@ public class CSU07Test {
     private Playground playground;
     private Administrator administrator;
     private PlaygroundOwner playgroundOwner;
+
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+
+    private final PrintStream standardOut = System.out;
+
+    @Before
+    public void setUp() {
+        MockitoAnnotations.initMocks(this);
+        System.setOut(new PrintStream(outputStreamCaptor));
+    }
 
     @Test
     public void testeSetimoCasoDeUso07() {
