@@ -10,61 +10,53 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.ExpectedSystemExit;
+import org.junit.contrib.java.lang.system.SystemOutRule;
+import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 import org.mockito.MockitoAnnotations;
 
 import UI.SystemUI;
 
 public class CSU03Test {
 
-    private SystemUI sistema;
-   
+    private final InputStream originalSystemIn = System.in;
+
+    @Rule
+    public final TextFromStandardInputStream systemIn = TextFromStandardInputStream.emptyStandardInputStream();
+
     @Rule
     public final ExpectedSystemExit exit = ExpectedSystemExit.none();
 
-    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    private SystemUI sistema;
+    private Playground playground;
+    private PlaygroundOwner playgroundOwner;
+    private eWallet eWallet;
 
-    private final InputStream originalSystemIn = System.in;
     @Before
     public void setUp() {
-        System.setOut(new PrintStream(outputStreamCaptor));
         System.setIn(System.in);
     }
 
     @Test
     public void testeTerceiroCasoDeUso03() {
-        //faço o cadastro novamente para depois logar e testar o Caso de uso.
-        String inputSimulado ="2\nThales\nLacerda\n1\nteste\nthalesdonoPlayground@privado.com\n40028922\nSP\nplayer\n123\n"+ 
-        "1\nthalesdonoPlayground@privado.com\nteste\n5\nHappyPlayground\n3\nfriday\n1\n12\n3\n";
-        InputStream inputStreamSimulado = new ByteArrayInputStream(inputSimulado.getBytes());
-        System.setIn(inputStreamSimulado);
-        sistema = new SystemUI(); 
-
-        Playground playground = new Playground();
+        sistema = new SystemUI();
+        eWallet = new eWallet();
+        playground = new Playground();
+        playgroundOwner = new PlaygroundOwner();
         playground.setName("HappyPlayground");
-        playground.setOwner("Happy Inc");
-
-        eWallet eWallet = new eWallet();
-        eWallet.setBalance(40028922);
-
-        PlaygroundOwner playgroundOwner = new PlaygroundOwner();
+        eWallet.setBalance(10000);
         playgroundOwner.setBalance(eWallet);
         playgroundOwner.setFName("Thales");
         playgroundOwner.setLName("Lacerda");
         playgroundOwner.setPassword("teste");
-        playgroundOwner.setID(2);
+        playgroundOwner.setID(1);
         playgroundOwner.setRule("playground owner");
         playgroundOwner.setPhone(40028922);
-        playgroundOwner.setEmail("thalestestesoftware@privado.com");
-        playgroundOwner.setLocation("SP");
+        playgroundOwner.setEmail("thalesplaygrounddono@privado.com");
+        playgroundOwner.setLocation("BRASILSPSBC");
         playgroundOwner.addPlayground(playground);
         sistema.theOwners.add(playgroundOwner);
-
-        inputSimulado ="500";
-        inputStreamSimulado = new ByteArrayInputStream(inputSimulado.getBytes());
-        System.setIn(inputStreamSimulado);
-        Player player = new Player();
-
-        exit.expectSystemExitWithStatus(0);
+        exit.expectSystemExitWithStatus(0); 
+        systemIn.provideLines("2","Thales","Lacerda","1","teste","thalesPlayground@privado.com", "40028922", "SP", "player", "500", "25", "1", "thalesPlayground@privado.com", "teste", "5", "HappyPlayground", "5", "1", "friday", "2", "12", "3");
         sistema.accountMenu();
     }
 

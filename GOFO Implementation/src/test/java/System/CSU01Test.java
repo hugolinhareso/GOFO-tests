@@ -1,11 +1,8 @@
 package System;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.io.PrintStream;
-
 import org.junit.contrib.java.lang.system.ExpectedSystemExit;
+import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -15,31 +12,26 @@ import UI.SystemUI;
 
 public class CSU01Test {
 
-    private SystemUI sistema;
-   
+    private final InputStream originalSystemIn = System.in;
+
+    @Rule
+    public final TextFromStandardInputStream systemIn = TextFromStandardInputStream.emptyStandardInputStream();
+
     @Rule
     public final ExpectedSystemExit exit = ExpectedSystemExit.none();
 
-    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-
-    private final InputStream originalSystemIn = System.in;
+    private SystemUI sistema;
+   
     @Before
     public void setUp() {
-        System.setOut(new PrintStream(outputStreamCaptor));
         System.setIn(System.in);
     }
 
     @Test
     public void testUS01_1Test() {
-        String inputSimulado ="2\nThales\nLacerda\n1\nteste\nthalesllr@privado.com\n40028922\nSP\nPlayer\n123\n3\n3";
-        InputStream inputStreamSimulado = new ByteArrayInputStream(inputSimulado.getBytes());
-        System.setIn(inputStreamSimulado);
-        sistema = new SystemUI(); 
-        inputSimulado ="500";
-        inputStreamSimulado = new ByteArrayInputStream(inputSimulado.getBytes());
-        System.setIn(inputStreamSimulado);
-        Player player = new Player();
+        sistema = new SystemUI();
         exit.expectSystemExitWithStatus(0);
+        systemIn.provideLines("2","Thales","Lacerda","1","teste","thalesPlayground@privado.com", "40028922", "SP", "player", "500", "25", "3");
         sistema.accountMenu();
     }
 
