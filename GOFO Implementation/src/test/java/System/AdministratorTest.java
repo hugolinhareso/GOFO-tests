@@ -30,6 +30,8 @@ public class AdministratorTest {
 
     private final PrintStream standardOut = System.out;
 
+    private final InputStream originalSystemIn = System.in;
+
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
@@ -465,6 +467,11 @@ public class AdministratorTest {
         playground.setOwner("Happy Inc");
 
         return playground;
+    }
+
+    @After
+    public void restoreSystemInputOutput() {
+        System.setIn(originalSystemIn);
     }
 
 }

@@ -1,8 +1,10 @@
 package System;
 
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -26,7 +28,7 @@ public class CSU07Test {
     private PlaygroundOwner playgroundOwner;
 
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-
+    private final InputStream originalSystemIn = System.in;
     private final PrintStream standardOut = System.out;
 
     @Before
@@ -65,5 +67,10 @@ public class CSU07Test {
          "1", "admin@gmail.com", "123", "5", "2", "HappyPlayground", "yes", "6", "3"); 
         sistema.accountMenu();// viu a reclamação do cliente e suspendeu o playground para resolver o problema!
 
+    }
+
+    @After
+    public void restoreSystemInputOutput() {
+        System.setIn(originalSystemIn);
     }
 }

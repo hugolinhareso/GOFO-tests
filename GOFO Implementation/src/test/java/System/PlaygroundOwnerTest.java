@@ -1,5 +1,6 @@
 package System;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -24,7 +25,7 @@ public class PlaygroundOwnerTest {
 
     @Mock
     private eWallet eWallet;
-    
+    private final InputStream originalSystemIn = System.in;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
     @Before
@@ -166,5 +167,9 @@ public class PlaygroundOwnerTest {
         assertEquals(Boolean.FALSE, exist);
     }
 
-   
+    @After
+    public void restoreSystemInputOutput() {
+        System.setIn(originalSystemIn);
+    }
+
 }

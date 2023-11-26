@@ -1,5 +1,6 @@
 package System;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -22,7 +23,7 @@ public class PlayerTest {
     private Player player;
 
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-    
+    private final InputStream originalSystemIn = System.in;
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
@@ -168,5 +169,10 @@ public class PlayerTest {
         player.addInbox("Inbox Teste");
         player.viewInbox();
         assertEquals(1, player.Inbox.size());
+    }
+
+    @After
+    public void restoreSystemInputOutput() {
+        System.setIn(originalSystemIn);
     }
 }
