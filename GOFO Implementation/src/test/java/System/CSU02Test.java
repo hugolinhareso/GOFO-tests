@@ -7,6 +7,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -25,7 +26,7 @@ public class CSU02Test {
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
     private final PrintStream standardOut = System.out;
-
+    private final InputStream originalSystemIn = System.in;
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
@@ -49,5 +50,10 @@ public class CSU02Test {
 
         exit.expectSystemExitWithStatus(0);
         sistema.accountMenu();
+    }
+
+    @After
+    public void restoreSystemInputOutput() {
+        System.setIn(originalSystemIn);
     }
 }

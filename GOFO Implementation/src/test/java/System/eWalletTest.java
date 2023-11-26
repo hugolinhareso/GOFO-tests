@@ -1,5 +1,6 @@
 package System;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.MockitoAnnotations;
@@ -7,6 +8,7 @@ import org.mockito.MockitoAnnotations;
 import static org.junit.Assert.*;
 
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
 
 public class eWalletTest {
@@ -14,7 +16,8 @@ public class eWalletTest {
     private eWallet wallet;
 
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-
+    private final InputStream originalSystemIn = System.in;
+    
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
@@ -47,5 +50,10 @@ public class eWalletTest {
     public void DeveRetornarOkQuandoSolicitarVisualizacaoSaldop() {
         wallet.setBalance(300);
         assertEquals(300, wallet.getBalance());
+    }
+
+    @After
+    public void restoreSystemInputOutput() {
+        System.setIn(originalSystemIn);
     }
 }

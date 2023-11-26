@@ -1,5 +1,6 @@
 package System;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -22,7 +23,7 @@ public class PlayGroundScheduleTest {
     private PlayGroundSchedule schedule;
 
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-    
+    private final InputStream originalSystemIn = System.in;
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
@@ -137,4 +138,11 @@ public class PlayGroundScheduleTest {
         assertEquals("PlayerOne", schedule.schedule.get(0).get(1));
 
     }
+
+    @After
+    public void restoreSystemInputOutput() {
+        System.setIn(originalSystemIn);
+    }
+
+
 }

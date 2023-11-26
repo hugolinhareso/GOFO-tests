@@ -26,7 +26,7 @@ public class CSU03Test {
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
     private final PrintStream standardOut = System.out;
-
+    private final InputStream originalSystemIn = System.in;
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
@@ -70,5 +70,10 @@ public class CSU03Test {
 
         exit.expectSystemExitWithStatus(0);
         sistema.accountMenu();
+    }
+
+    @After
+    public void restoreSystemInputOutput() {
+        System.setIn(originalSystemIn);
     }
 }

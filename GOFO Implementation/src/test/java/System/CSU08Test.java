@@ -1,8 +1,10 @@
 package System;
 
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -24,7 +26,7 @@ public class CSU08Test {
     private Playground playground;
     private Administrator administrator;
     private PlaygroundOwner playgroundOwner;
-
+    private final InputStream originalSystemIn = System.in;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
     private final PrintStream standardOut = System.out;
@@ -66,5 +68,10 @@ public class CSU08Test {
         "1", "thalesdonoplayground@privado.com", "teste", "4","1", "playerone@privado.com", "12", "3"); 
         sistema.accountMenu();
 
+    }
+
+    @After
+    public void restoreSystemInputOutput() {
+        System.setIn(originalSystemIn);
     }
 }
