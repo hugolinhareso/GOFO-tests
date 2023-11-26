@@ -5,7 +5,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 
@@ -15,7 +14,6 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AdministratorTest {
@@ -30,15 +28,12 @@ public class AdministratorTest {
 
     private final PrintStream standardOut = System.out;
 
+    private final InputStream originalSystemIn = System.in;
+
     @Before
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
         System.setOut(new PrintStream(outputStreamCaptor));
-    }
-
-    @After
-    public void tearDown() {
-        System.setOut(standardOut);
+        System.setIn(System.in);
     }
 
     // =============================== cenários negativos ================================= //
@@ -464,6 +459,11 @@ public class AdministratorTest {
         playground.setOwner("Happy Inc");
 
         return playground;
+    }
+
+    @After
+    public void restoreSystemInputOutput() {
+        System.setIn(originalSystemIn);
     }
 
 }

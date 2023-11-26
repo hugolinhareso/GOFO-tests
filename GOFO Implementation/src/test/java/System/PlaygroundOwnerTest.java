@@ -1,5 +1,6 @@
 package System;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -9,7 +10,9 @@ import org.mockito.MockitoAnnotations;
 import static org.junit.Assert.*;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -22,10 +25,14 @@ public class PlaygroundOwnerTest {
 
     @Mock
     private eWallet eWallet;
+    private final InputStream originalSystemIn = System.in;
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
+        System.setOut(new PrintStream(outputStreamCaptor));
+        System.setIn(System.in);
     }
 
     @Test
@@ -160,5 +167,9 @@ public class PlaygroundOwnerTest {
         assertEquals(Boolean.FALSE, exist);
     }
 
-   
+    @After
+    public void restoreSystemInputOutput() {
+        System.setIn(originalSystemIn);
+    }
+
 }
