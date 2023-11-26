@@ -34,6 +34,7 @@ public class AdministratorTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         System.setOut(new PrintStream(outputStreamCaptor));
+        System.setIn(System.in);
     }
 
     @After

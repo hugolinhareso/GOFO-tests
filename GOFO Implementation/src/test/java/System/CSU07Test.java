@@ -33,6 +33,7 @@ public class CSU07Test {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         System.setOut(new PrintStream(outputStreamCaptor));
+        System.setIn(System.in);
     }
 
     @Test
