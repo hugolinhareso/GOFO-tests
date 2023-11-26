@@ -29,6 +29,7 @@ jobs:
 
       - name: Run Unit Tests with Maven
         run: |
+          mvn compile --file 'GOFO Implementation/pom.xml'
           mvn test -Dtest=AdministratorTest test;
           mvn test -Dtest=PlayGroundScheduleTest test;
           mvn test -Dtest=PlayerTest test;
@@ -40,6 +41,8 @@ jobs:
         if: always()
 
       - name: Run Use Cases Tests with Maven
-        run: mvn test -Dtest=CSU01Test test;
+        run: |
+          mvn compile --file 'GOFO Implementation/pom.xml'
+          mvn test -Dtest=CSU01Test test;
         if: always()
         
