@@ -29,7 +29,6 @@ jobs:
 
       - name: Run Unit Tests with Maven
         run: |
-          mvn compile --file 'GOFO Implementation/pom.xml'
           mvn test -Dtest=AdministratorTest test;
           mvn test -Dtest=PlayGroundScheduleTest test;
           mvn test -Dtest=PlayerTest test;
@@ -39,10 +38,10 @@ jobs:
           mvn test -Dtest=userProfileTest test;
           EXIT_CODE=$?
         if: always()
-
+        working-directory: 'GOFO Implementation'
+        
       - name: Run Use Cases Tests with Maven
         run: |
-          mvn compile --file 'GOFO Implementation/pom.xml'
           mvn test -Dtest=CSU01Test test;
         if: always()
-        
+        working-directory: 'GOFO Implementation'
