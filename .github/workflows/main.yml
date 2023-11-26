@@ -21,27 +21,21 @@ jobs:
         with:
           java-version: '8'
           distribution: 'temurin'
-          maven-version: 3.8.7
-          cache: maven
 
       - name: Build with Maven
-        run: mvn -B compile --file 'GOFO Implementation/pom.xml'
-        working-directory: 'GOFO Implementation'
+        run: mvn compile
 
       - name: Run Unit Tests with Maven
         run: |
-          mvn test -Dtest=AdministratorTest test --file 'GOFO Implementation/pom.xml';
-          mvn test -Dtest=PlayGroundScheduleTest test --file 'GOFO Implementation/pom.xml';
-          mvn test -Dtest=PlayerTest test --file 'GOFO Implementation/pom.xml';
-          mvn test -Dtest=PlaygroundOwnerTest test --file 'GOFO Implementation/pom.xml';
-          mvn test -Dtest=PlaygroundTest test --file 'GOFO Implementation/pom.xml';
-          mvn test -Dtest=eWalletTest test --file 'GOFO Implementation/pom.xml';
-          mvn test -Dtest=userProfileTest test --file 'GOFO Implementation/pom.xml';
+          mvn test -Dtest=AdministratorTest test;
+          mvn test -Dtest=PlayGroundScheduleTest test;
+          mvn test -Dtest=PlayerTest test;
+          mvn test -Dtest=PlaygroundOwnerTest test;
+          mvn test -Dtest=PlaygroundTest test;
+          mvn test -Dtest=eWalletTest test;
+          mvn test -Dtest=userProfileTest test;
           EXIT_CODE=$?
-        working-directory: 'GOFO Implementation'
 
       - name: Run Use Cases Tests with Maven
-        run: |
-          mvn test -Dtest=CSU01Test test --file 'GOFO Implementation/pom.xml';
-          EXIT_CODE=$?
-        working-directory: 'GOFO Implementation'
+        run:  mvn test -Dtest=CSU01Test test;
+
