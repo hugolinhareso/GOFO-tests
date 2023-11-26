@@ -18,11 +18,13 @@ public class CSU04Test {
     @Rule
     public final ExpectedSystemExit exit = ExpectedSystemExit.none();
 
+    private SystemUI sistema;
     private Playground playground;
     private Administrator administrator;
     
     @Test
     public void testeQuartoCasoDeUso04() {
+        sistema = new SystemUI();
         administrator = new Administrator();
         playground = new Playground();
         
@@ -42,7 +44,7 @@ public class CSU04Test {
         systemIn.provideLines("2", "Thales", "Lacerda","1", "123456", "thalesdonoPlayground@privado.com", "40028922", 
         "SP", "player", "500", "123", "1", "thalesdonoPlayground@privado.com", "123456", "10", "HappyPlayground", "3", "2", 
         "HappyPlayground", "6", "8", "friday", "4", "1", "thalesdonoPlayground@privado.com", "12", "1", "thalesdonoPlayground@privado.com", "123456", "8", "12", "3"); 
-        SystemUI.accountMenu();
+        sistema.accountMenu();
 
     }
 

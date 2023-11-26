@@ -54,6 +54,6 @@ public class CSU03Test {
         Player player = new Player();
 
         exit.expectSystemExitWithStatus(0);
-        SystemUI.accountMenu();
+        sistema.accountMenu();
     }
 }

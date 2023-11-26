@@ -33,6 +33,6 @@ public class CSU02Test {
         eWallet eWallet = new eWallet();
 
         exit.expectSystemExitWithStatus(0);
-        SystemUI.accountMenu();
+        sistema.accountMenu();
     }
 }
