@@ -1,7 +1,5 @@
 package System;
 
-import static org.junit.Assert.assertEquals;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -25,11 +23,9 @@ public class CSU02Test {
 
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
-    private final PrintStream standardOut = System.out;
     private final InputStream originalSystemIn = System.in;
     @Before
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
         System.setOut(new PrintStream(outputStreamCaptor));
         System.setIn(System.in);
     }

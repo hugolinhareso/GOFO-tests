@@ -3,7 +3,6 @@ package System;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.MockitoAnnotations;
 
 import static org.junit.Assert.*;
 
@@ -20,7 +19,6 @@ public class eWalletTest {
     
     @Before
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
         System.setOut(new PrintStream(outputStreamCaptor));
         System.setIn(System.in);
         wallet = new eWallet();

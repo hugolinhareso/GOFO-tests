@@ -1,14 +1,11 @@
 package System;
 
-import static org.junit.Assert.assertEquals;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
 import org.junit.contrib.java.lang.system.ExpectedSystemExit;
-import org.mockito.MockitoAnnotations;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -25,11 +22,9 @@ public class CSU01Test {
 
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
-    private final PrintStream standardOut = System.out;
     private final InputStream originalSystemIn = System.in;
     @Before
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
         System.setOut(new PrintStream(outputStreamCaptor));
         System.setIn(System.in);
     }

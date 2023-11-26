@@ -1,6 +1,5 @@
 package System;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -11,8 +10,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
-import org.mockito.MockitoAnnotations;
-
 import UI.SystemUI;
 
 public class CSU06Test {
@@ -30,11 +27,9 @@ public class CSU06Test {
     
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     private final InputStream originalSystemIn = System.in;
-    private final PrintStream standardOut = System.out;
 
     @Before
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
         System.setOut(new PrintStream(outputStreamCaptor));
         System.setIn(System.in);
     }
