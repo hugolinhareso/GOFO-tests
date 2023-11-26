@@ -24,7 +24,7 @@ jobs:
           cache: maven
 
       - name: Build with Maven
-        run: mvn compile
+        run: mvn compile --file 'GOFO Implementation/pom.xml'
         working-directory: 'GOFO Implementation'
 
       - name: Run Unit Tests with Maven
@@ -41,5 +41,4 @@ jobs:
 
       - name: Run Use Cases Tests with Maven
         run: mvn test -Dtest=CSU01Test test;
-        if: always()
         working-directory: 'GOFO Implementation'
