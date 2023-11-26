@@ -8,7 +8,9 @@ import org.mockito.MockitoAnnotations;
 import static org.junit.Assert.*;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -19,10 +21,13 @@ public class PlayerTest {
     @Mock
     private Player player;
 
-
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
+        System.setOut(new PrintStream(outputStreamCaptor));
+        System.setIn(System.in);
     }
 
     @Test

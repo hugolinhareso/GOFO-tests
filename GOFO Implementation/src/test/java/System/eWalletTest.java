@@ -2,14 +2,24 @@ package System;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.MockitoAnnotations;
+
 import static org.junit.Assert.*;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 public class eWalletTest {
 
     private eWallet wallet;
 
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+
     @Before
     public void setUp() {
+        MockitoAnnotations.initMocks(this);
+        System.setOut(new PrintStream(outputStreamCaptor));
+        System.setIn(System.in);
         wallet = new eWallet();
     }
 

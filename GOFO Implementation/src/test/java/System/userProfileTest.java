@@ -2,16 +2,25 @@ package System;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.MockitoAnnotations;
+
 import static org.junit.Assert.*;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 public class userProfileTest {
 
     private userProfile user;
 
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+
     @Before
     public void setUp() {
+        MockitoAnnotations.initMocks(this);
+        System.setOut(new PrintStream(outputStreamCaptor));
+        System.setIn(System.in);
         user = new userProfile();
-        new eWallet();
     }
 
     @Test
