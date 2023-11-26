@@ -1,17 +1,28 @@
 package System;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.MockitoAnnotations;
+
 import static org.junit.Assert.*;
+
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.PrintStream;
 
 public class userProfileTest {
 
     private userProfile user;
 
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    private final InputStream originalSystemIn = System.in;
     @Before
     public void setUp() {
+        MockitoAnnotations.initMocks(this);
+        System.setOut(new PrintStream(outputStreamCaptor));
+        System.setIn(System.in);
         user = new userProfile();
-        new eWallet();
     }
 
     @Test
@@ -50,4 +61,9 @@ public class userProfileTest {
         user.setRule("Administrator");
         assertEquals("Administrator", user.getRule());
     }
+
+    @After
+    public void restoreSystemInputOutput() {
+        System.setIn(originalSystemIn);
+    }   
 }

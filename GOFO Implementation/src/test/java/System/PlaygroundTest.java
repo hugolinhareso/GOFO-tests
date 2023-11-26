@@ -1,5 +1,6 @@
 package System;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -9,7 +10,9 @@ import org.mockito.junit.MockitoJUnitRunner;
 import static org.junit.Assert.*;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.io.PrintStream;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PlaygroundTest {
@@ -18,9 +21,13 @@ public class PlaygroundTest {
     @InjectMocks
     private Playground playground;
 
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    private final InputStream originalSystemIn = System.in;
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
+        System.setOut(new PrintStream(outputStreamCaptor));
+        System.setIn(System.in);
     }
 
     @Test
@@ -88,5 +95,10 @@ public class PlaygroundTest {
         playground.setOwner("Happy Inc");
 
         return playground;
+    }
+
+    @After
+    public void restoreSystemInputOutput() {
+        System.setIn(originalSystemIn);
     }
 }

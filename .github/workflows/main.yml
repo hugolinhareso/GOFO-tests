@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: 'GOFO Implementation'
-    
+
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
@@ -24,9 +24,67 @@ jobs:
           cache: maven
 
       - name: Build with Maven
-        run: mvn -B package --file 'GOFO Implementation/pom.xml'
+        run: |
+          mvn -B package -Dmaven.test.skip --file 'GOFO Implementation/pom.xml';
+          EXIT_CODE=$?
         working-directory: 'GOFO Implementation'
 
-      - name: Run Tests with Maven
-        run: mvn test --file 'GOFO Implementation/pom.xml'
+      - name: Run Unit Tests with Maven
+        run: |
+          mvn test -Dtest=AdministratorTest test --file 'GOFO Implementation/pom.xml';
+          mvn test -Dtest=PlayGroundScheduleTest test --file 'GOFO Implementation/pom.xml';
+          mvn test -Dtest=PlayerTest test --file 'GOFO Implementation/pom.xml';
+          mvn test -Dtest=PlaygroundOwnerTest test --file 'GOFO Implementation/pom.xml';
+          mvn test -Dtest=PlaygroundTest test --file 'GOFO Implementation/pom.xml';
+          mvn test -Dtest=eWalletTest test --file 'GOFO Implementation/pom.xml';
+          mvn test -Dtest=userProfileTest test --file 'GOFO Implementation/pom.xml';
+          EXIT_CODE=$?
+        working-directory: 'GOFO Implementation'
+
+      - name: Run Use Case 01 with Maven
+        run: |
+          mvn test -Dtest=CSU01Test test --file 'GOFO Implementation/pom.xml';
+          EXIT_CODE=$?
+        working-directory: 'GOFO Implementation'
+
+      - name: Run Use Case 02 with Maven
+        run: |
+          mvn test -Dtest=CSU02Test test --file 'GOFO Implementation/pom.xml';
+          EXIT_CODE=$?
+        working-directory: 'GOFO Implementation'
+
+      - name: Run Use Case 03 with Maven
+        run: |
+          mvn test -Dtest=CSU03Test test --file 'GOFO Implementation/pom.xml';
+          EXIT_CODE=$?
+        working-directory: 'GOFO Implementation'
+
+      - name: Run Use Case 04 with Maven
+        run: |
+          mvn test -Dtest=CSU04Test test --file 'GOFO Implementation/pom.xml';
+          EXIT_CODE=$?
+        working-directory: 'GOFO Implementation'
+
+      - name: Run Use Case 05 with Maven
+        run: |
+          mvn test -Dtest=CSU05Test test --file 'GOFO Implementation/pom.xml';
+          EXIT_CODE=$?
+        working-directory: 'GOFO Implementation'
+
+      - name: Run Use Case 06 with Maven
+        run: |
+          mvn test -Dtest=CSU06Test test --file 'GOFO Implementation/pom.xml';
+          EXIT_CODE=$?
+        working-directory: 'GOFO Implementation'
+
+      - name: Run Use Case 07 with Maven
+        run: |
+          mvn test -Dtest=CSU07Test test --file 'GOFO Implementation/pom.xml';
+          EXIT_CODE=$?
+        working-directory: 'GOFO Implementation'
+
+      - name: Run Use Case 08 with Maven
+        run: |
+          mvn test -Dtest=CSU08Test test --file 'GOFO Implementation/pom.xml';
+          EXIT_CODE=$?
         working-directory: 'GOFO Implementation'
