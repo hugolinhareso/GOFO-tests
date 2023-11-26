@@ -3,10 +3,13 @@ package System;
 import static org.junit.Assert.assertEquals;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.io.PrintStream;
 
 import org.junit.contrib.java.lang.system.ExpectedSystemExit;
-
+import org.mockito.MockitoAnnotations;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -18,6 +21,16 @@ public class CSU01Test {
    
     @Rule
     public final ExpectedSystemExit exit = ExpectedSystemExit.none();
+
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+
+    private final PrintStream standardOut = System.out;
+
+    @Before
+    public void setUp() {
+        MockitoAnnotations.initMocks(this);
+        System.setOut(new PrintStream(outputStreamCaptor));
+    }
 
     @Test
     public void testUS01_1Test() {
