@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -28,7 +29,7 @@ public class CSU06Test {
     private PlaygroundOwner playgroundOwner;
     
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-
+    private final InputStream originalSystemIn = System.in;
     private final PrintStream standardOut = System.out;
 
     @Before
@@ -68,4 +69,9 @@ public class CSU06Test {
 
     }
     
+    @After
+    public void restoreSystemInputOutput() {
+        System.setIn(originalSystemIn);
+    }
+
 }
