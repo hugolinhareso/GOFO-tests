@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -18,6 +19,8 @@ public class CSU05Test {
     
     @Rule
     public final TextFromStandardInputStream systemIn = TextFromStandardInputStream.emptyStandardInputStream();
+
+    private final InputStream originalSystemIn = System.in;
 
     @Rule
     public final ExpectedSystemExit exit = ExpectedSystemExit.none();
@@ -66,5 +69,10 @@ public class CSU05Test {
         "1", "lili@gmail.com", "teste", "8", "12", "3"); 
         sistema.accountMenu();
 
+    }
+
+    @After
+    public void restoreSystemInputOutput() {
+        System.setIn(originalSystemIn);
     }
 }
