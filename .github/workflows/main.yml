@@ -37,8 +37,9 @@ jobs:
           mvn test -Dtest=eWalletTest test;
           mvn test -Dtest=userProfileTest test;
           EXIT_CODE=$?
-        working-directory: 'GOFO Implementation'
+        if: always()
 
       - name: Run Use Cases Tests with Maven
         run: mvn test -Dtest=CSU01Test test;
-        working-directory: 'GOFO Implementation'
+        if: always()
+        
