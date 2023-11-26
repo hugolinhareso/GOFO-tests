@@ -24,7 +24,8 @@ jobs:
           cache: maven
 
       - name: Build with Maven
-        run: mvn compile --file 'GOFO Implementation/pom.xml'
+        run: |
+             mvn compile --file 'GOFO Implementation/pom.xml'
              mvn clean --file 'GOFO Implementation/pom.xml'
         working-directory: 'GOFO Implementation'
 
