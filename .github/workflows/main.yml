@@ -25,13 +25,11 @@ jobs:
 
       - name: Build with Maven
         run: |
-             mvn compile --file 'GOFO Implementation/pom.xml'
-             mvn clean --file 'GOFO Implementation/pom.xml'
+             mvn package --file 'GOFO Implementation/pom.xml'
         working-directory: 'GOFO Implementation'
 
       - name: Run Unit Tests with Maven
         run: |
-          mvn compile --file 'GOFO Implementation/pom.xml'
           mvn test -Dtest=AdministratorTest test;
           mvn test -Dtest=PlayGroundScheduleTest test;
           mvn test -Dtest=PlayerTest test;
@@ -44,7 +42,6 @@ jobs:
 
       - name: Run Use Cases Tests with Maven
         run: |
-          --file 'GOFO Implementation/pom.xml'
           mvn test -Dtest=UC01Test test;
           mvn test -Dtest=UC02Test test;
           mvn test -Dtest=UC03Test test;
