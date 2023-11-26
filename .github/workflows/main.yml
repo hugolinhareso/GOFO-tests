@@ -19,8 +19,9 @@ jobs:
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
+          java-version: '8'
           distribution: 'temurin'
+          maven-version: 3.8.7
           cache: maven
 
       - name: Build with Maven
@@ -37,11 +38,10 @@ jobs:
           mvn test -Dtest=eWalletTest test;
           mvn test -Dtest=userProfileTest test;
           EXIT_CODE=$?
-        if: always()
         working-directory: 'GOFO Implementation'
-        
+
       - name: Run Use Cases Tests with Maven
         run: |
           mvn test -Dtest=CSU01Test test;
-        if: always()
+          EXIT_CODE=$?
         working-directory: 'GOFO Implementation'
