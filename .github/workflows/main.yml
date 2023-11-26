@@ -25,7 +25,7 @@ jobs:
           cache: maven
 
       - name: Build with Maven
-        run: mvn -B package --file 'GOFO Implementation/pom.xml'
+        run: mvn -B compile --file 'GOFO Implementation/pom.xml'
         working-directory: 'GOFO Implementation'
 
       - name: Run Unit Tests with Maven
