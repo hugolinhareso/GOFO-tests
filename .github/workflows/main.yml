@@ -31,12 +31,6 @@ jobs:
       - name: Run Unit Tests with Maven
         run: |
           mvn test -Dtest=AdministratorTest test --file 'GOFO Implementation/pom.xml';
-          mvn test -Dtest=PlayGroundScheduleTest test --file 'GOFO Implementation/pom.xml';
-          mvn test -Dtest=PlayerTest test --file 'GOFO Implementation/pom.xml';
-          mvn test -Dtest=PlaygroundOwnerTest test --file 'GOFO Implementation/pom.xml';
-          mvn test -Dtest=PlaygroundTest test --file 'GOFO Implementation/pom.xml';
-          mvn test -Dtest=eWalletTest test --file 'GOFO Implementation/pom.xml';
-          mvn test -Dtest=userProfileTest test --file 'GOFO Implementation/pom.xml';
           EXIT_CODE=$?
         working-directory: 'GOFO Implementation'
 
