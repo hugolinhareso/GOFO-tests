@@ -23,14 +23,9 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          path: 'GOFO Implementation'
-
       - name: Build with Maven
         run: |
-          mvn -B package -Dmaven.test.skip;
+          mvn -B package -Dmaven.test.skip --file 'pom.xml';
           EXIT_CODE=$?
 
       - name: Run Unit Tests with Maven
@@ -43,56 +38,47 @@ jobs:
           mvn test -Dtest=eWalletTest test;
           mvn test -Dtest=userProfileTest test;
           EXIT_CODE=$?
-        working-directory: 'GOFO Implementation'
 
       - name: Run Use Case 01 with Maven
         run: |
           mvn test -Dtest=CSU01Test test;
           EXIT_CODE=$?
-        working-directory: 'GOFO Implementation'
 
       - name: Run Use Case 02 with Maven
         run: |
           mvn test -Dtest=CSU02Test test;
-          EXIT_CODE=$?
-        working-directory: 'GOFO Implementation'  
+          EXIT_CODE=$?  
 
       - name: Run Use Case 03 with Maven
         run: |
           mvn test -Dtest=CSU03Test test;
-          EXIT_CODE=$?
-        working-directory: 'GOFO Implementation'  
+          EXIT_CODE=$?  
 
       - name: Run Use Case 04 with Maven
         run: |
             mvn test -Dtest=CSU04Test test;
-            EXIT_CODE=$?
-        working-directory: 'GOFO Implementation'  
+            EXIT_CODE=$?  
 
         
       - name: Run Use Case 05 with Maven
         run: |
           mvn test -Dtest=CSU05Test test;
-          EXIT_CODE=$?
-        working-directory: 'GOFO Implementation'  
+          EXIT_CODE=$?  
 
       
       - name: Run Use Case 06 with Maven
         run: |
           mvn test -Dtest=CSU06Test test;
-          EXIT_CODE=$?
-        working-directory: 'GOFO Implementation'  
+          EXIT_CODE=$?  
 
         
       - name: Run Use Case 07 with Maven
         run: |
           mvn test -Dtest=CSU07Test test;
-          EXIT_CODE=$?
-        working-directory: 'GOFO Implementation'  
+          EXIT_CODE=$?  
 
       
       - name: Run Use Case 08 with Maven
         run: |
           mvn test -Dtest=CSU08Test test;
           EXIT_CODE=$?
-        working-directory: 'GOFO Implementation'
